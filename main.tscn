@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://i8nr4jqbcer8"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_fg36c"]
+[ext_resource type="PackedScene" uid="uid://b2d25dj5n1qrg" path="res://web_socket_manager.tscn" id="2_4knyk"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_fg36c")
+websocket_manager_scene = ExtResource("2_4knyk")
+websocket_server_url = "wss://localhost:32768/ws/"

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2d25dj5n1qrg"]
+
+[ext_resource type="Script" path="res://web_socket_manager.gd" id="1_88ild"]
+
+[node name="WebSocketManager" type="Node"]
+script = ExtResource("1_88ild")
