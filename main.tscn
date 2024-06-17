@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://i8nr4jqbcer8"]
+[gd_scene load_steps=5 format=3 uid="uid://i8nr4jqbcer8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_fg36c"]
-[ext_resource type="PackedScene" uid="uid://b2d25dj5n1qrg" path="res://web_socket_manager.tscn" id="2_4knyk"]
+[ext_resource type="Script" path="res://web_socket_manager.gd" id="3_eddov"]
+[ext_resource type="PackedScene" uid="uid://bt4lpqpfnyckd" path="res://lobby.tscn" id="3_p7oqh"]
+[ext_resource type="Script" path="res://PacketManager.gd" id="4_o5wl0"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_fg36c")
-websocket_manager_scene = ExtResource("2_4knyk")
+lobby_scene = ExtResource("3_p7oqh")
 websocket_server_url = "wss://localhost:32768/ws/"
+
+[node name="WebSocketManager" type="Node" parent="."]
+script = ExtResource("3_eddov")
+
+[node name="PacketManager" type="Node" parent="."]
+script = ExtResource("4_o5wl0")

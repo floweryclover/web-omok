@@ -38,3 +38,8 @@ func _process(_delta: float):
 	
 func is_connected_to_server() -> bool:
 	return _websocket.get_ready_state() == WebSocketPeer.STATE_OPEN
+	
+func send_string(string: String) -> void:
+	if !is_connected_to_server():
+		return
+	_websocket.send_text(string)

@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://kgym03k8nyvd"]
+
+[ext_resource type="Script" path="res://create_room_widget.gd" id="1_wf8rv"]
+
+[node name="CreateRoomWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wf8rv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.489622, 0.489622, 0.489622, 0.588235)
+
+[node name="RoomNameEnterArea" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="RoomNameEnterArea"]
+layout_mode = 2
+text = "방 이름"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="RoomNameEnterArea"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+
+[node name="ButtonArea" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CreateButton" type="Button" parent="ButtonArea"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "생성"
+
+[node name="CancelButton" type="Button" parent="ButtonArea"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "취소"

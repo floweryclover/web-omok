@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://dyifxghurexcx"]
+[gd_scene load_steps=2 format=3 uid="uid://dyifxghurexcx"]
+
+[ext_resource type="Script" path="res://room_item.gd" id="1_tu6rc"]
 
 [node name="RoomItem" type="Control"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_tu6rc")
 
 [node name="RoomButton" type="Button" parent="."]
 layout_mode = 1
