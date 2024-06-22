@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bt4lpqpfnyckd"]
 
-[ext_resource type="Script" path="res://lobby.gd" id="1_0jqob"]
+[ext_resource type="Script" path="res://lobby.gd" id="1_n7obw"]
 [ext_resource type="PackedScene" uid="uid://kgym03k8nyvd" path="res://create_room_widget.tscn" id="2_ach1x"]
 
 [node name="LobbyWidget" type="Control"]
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0jqob")
+script = ExtResource("1_n7obw")
 
 [node name="Header" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 64)

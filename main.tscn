@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://i8nr4jqbcer8"]
+[gd_scene load_steps=6 format=3 uid="uid://i8nr4jqbcer8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_fg36c"]
 [ext_resource type="Script" path="res://web_socket_manager.gd" id="3_eddov"]
 [ext_resource type="PackedScene" uid="uid://bt4lpqpfnyckd" path="res://lobby.tscn" id="3_p7oqh"]
-[ext_resource type="Script" path="res://PacketManager.gd" id="4_o5wl0"]
+[ext_resource type="Script" path="res://packet_manager.gd" id="4_o5wl0"]
+[ext_resource type="Script" path="res://disconnected_widget.gd" id="5_mon35"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_fg36c")
@@ -15,3 +16,54 @@ script = ExtResource("3_eddov")
 
 [node name="PacketManager" type="Node" parent="."]
 script = ExtResource("4_o5wl0")
+
+[node name="DisconnectedWidget" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_mon35")
+
+[node name="ColorRect" type="ColorRect" parent="DisconnectedWidget"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.470588)
+
+[node name="Label" type="Label" parent="DisconnectedWidget"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -11.5
+offset_right = 110.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "서버와의 연결이 끊어졌습니다."
+
+[node name="Button" type="Button" parent="DisconnectedWidget"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 64.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "재접속"

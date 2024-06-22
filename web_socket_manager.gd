@@ -15,10 +15,11 @@ func connect_to_server(url: String) -> void:
 	var err = _websocket.connect_to_url(url)
 	if err != OK:
 		push_error(url + " 서버에 접속할 수 없습니다.")
+		websocket_disconnected.emit(0, "서버에 접속할 수 없습니다.")
 		set_process(false)
 		return
-	websocket_connected.emit()
 	set_process(true)
+	websocket_connected.emit()
 
 func _process(_delta: float):
 	_websocket.poll()
