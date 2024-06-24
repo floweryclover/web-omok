@@ -39,8 +39,10 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TextEdit" type="TextEdit" parent="RoomNameEnterArea"]
-custom_minimum_size = Vector2(128, 32)
+custom_minimum_size = Vector2(256, 32)
 layout_mode = 2
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="ButtonArea" type="HFlowContainer" parent="."]
 layout_mode = 1

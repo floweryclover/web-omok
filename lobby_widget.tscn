@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bt4lpqpfnyckd"]
 
-[ext_resource type="Script" path="res://lobby.gd" id="1_n7obw"]
+[ext_resource type="Script" path="res://lobby_widget.gd" id="1_n7obw"]
 [ext_resource type="PackedScene" uid="uid://kgym03k8nyvd" path="res://create_room_widget.tscn" id="2_ach1x"]
 
 [node name="LobbyWidget" type="Control"]

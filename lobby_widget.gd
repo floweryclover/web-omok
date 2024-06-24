@@ -1,10 +1,10 @@
 extends Control
 
-class_name Lobby
+class_name LobbyWidget
 
 @onready var _create_room_button: Button = $Header/CreateRoomButton
-var packet_manager: PacketManager
 @onready var _create_room_widget: CreateRoomWidget = $CreateRoomWidget
+var packet_manager: PacketManager = null
 
 func _ready():
 	_hide_create_room_widget()
