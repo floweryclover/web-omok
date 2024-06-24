@@ -57,9 +57,9 @@ func send_string(string: String) -> void:
 	if !is_connected_to_server():
 		return
 	if string.length() > MAX_MESSAGE_SIZE:
-		var error_string: String = "메시지 크기가 최대 크기 {max}byte를 초과합니다: {current}".format({"max":MAX_MESSAGE_SIZE, "current": string.length()})
-		push_error(error_string)
-		_websocket.close(-1, error_string)
+		var error_message: String = "메시지 크기가 최대 크기 {max}byte를 초과합니다: {current}".format({"max":MAX_MESSAGE_SIZE, "current": string.length()})
+		push_error(error_message)
+		_websocket.close(-1, error_message)
 		return
-	print(string.length())
 	_websocket.send_text(string)
+	FlashMessageWidget.flash("안녕", FlashMessageWidget.FLASH_INFO)
