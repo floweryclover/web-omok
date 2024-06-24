@@ -62,4 +62,3 @@ func send_string(string: String) -> void:
 		_websocket.close(-1, error_message)
 		return
 	_websocket.send_text(string)
-	FlashMessageWidget.flash("안녕", FlashMessageWidget.FLASH_INFO)

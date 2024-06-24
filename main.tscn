@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_fg36c"]
 [ext_resource type="Script" path="res://web_socket_manager.gd" id="3_eddov"]
 [ext_resource type="PackedScene" uid="uid://bt4lpqpfnyckd" path="res://lobby_widget.tscn" id="3_p7oqh"]
-[ext_resource type="Script" path="res://packet_manager.gd" id="4_o5wl0"]
+[ext_resource type="Script" path="res://network.gd" id="4_o5wl0"]
 [ext_resource type="PackedScene" uid="uid://bw7cwkeiisx35" path="res://disconnected_widget.tscn" id="5_smldt"]
 [ext_resource type="PackedScene" uid="uid://bkx08aoo2bqqo" path="res://flash_message_widget.tscn" id="6_05g54"]
 
@@ -14,7 +14,7 @@ websocket_server_url = "wss://localhost:32774/ws/"
 [node name="WebSocketManager" type="Node" parent="."]
 script = ExtResource("3_eddov")
 
-[node name="PacketManager" type="Node" parent="."]
+[node name="Network" type="Node" parent="."]
 script = ExtResource("4_o5wl0")
 
 [node name="LobbyWidget" parent="." instance=ExtResource("3_p7oqh")]
@@ -24,4 +24,3 @@ visible = false
 visible = false
 
 [node name="FlashMessageWidget" parent="." instance=ExtResource("6_05g54")]
-visible = true

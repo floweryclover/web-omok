@@ -4,7 +4,6 @@ class_name LobbyWidget
 
 @onready var _create_room_button: Button = $Header/CreateRoomButton
 @onready var _create_room_widget: CreateRoomWidget = $CreateRoomWidget
-var packet_manager: PacketManager = null
 
 func _ready():
 	_hide_create_room_widget()
@@ -20,4 +19,4 @@ func _hide_create_room_widget() -> void:
 	
 func _on_create_room_requested(room_name: String) -> void:
 	_hide_create_room_widget()
-	packet_manager.create_room(room_name)
+	Network.create_room(room_name)
