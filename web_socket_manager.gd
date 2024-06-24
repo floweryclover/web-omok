@@ -39,8 +39,11 @@ func _process(_delta: float) -> void:
 		if _is_new_connection:
 			websocket_connected.emit()
 		while _websocket.get_available_packet_count():
-			var raw = _websocket.get_packet()
-			print("Server:" + raw.get_string_from_utf8())
+			var message: String = _websocket.get_packet().get_string_from_utf8()
+			if Network.handle_message(message) == false:
+				push_error("메시지 처리 중 에러가 발생하였습니다.")
+				_websocket.close(-1, "메시지 처리 중 에러가 발생하였습니다.")
+				return
 	elif state == WebSocketPeer.STATE_CLOSING:
 		pass
 	elif state == WebSocketPeer.STATE_CLOSED:
