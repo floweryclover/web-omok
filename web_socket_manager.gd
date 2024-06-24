@@ -5,17 +5,22 @@ class_name WebSocketManager
 signal websocket_disconnected(code: int, reason: String)
 signal websocket_connected
 
-var _websocket: WebSocketPeer = WebSocketPeer.new()
+var _websocket: WebSocketPeer = null
 var _is_new_connection: bool = true
 
+const MAX_MESSAGE_SIZE: int = 256
+
 func connect_to_server(url: String) -> bool:
-	var state: int = _websocket.get_ready_state()
-	if state != WebSocketPeer.STATE_CLOSED:
-		if state == WebSocketPeer.STATE_OPEN:
-			push_warning("이미 접속되어 있습니다.")
-		else:
-			push_warning("웹소켓이 준비되지 않았습니다.")
-		return false
+	if _websocket != null:
+		var state: int = _websocket.get_ready_state()
+		if state != WebSocketPeer.STATE_CLOSED:
+			if state == WebSocketPeer.STATE_OPEN:
+				push_warning("이미 접속되어 있습니다.")
+			else:
+				push_warning("웹소켓이 준비되지 않았습니다.")
+			return false
+	else:
+		_websocket = WebSocketPeer.new()
 		
 	var err: int = _websocket.connect_to_url(url)
 	if err != OK:
@@ -42,6 +47,7 @@ func _process(_delta: float) -> void:
 		var code: int = _websocket.get_close_code()
 		var reason: String = _websocket.get_close_reason()
 		websocket_disconnected.emit(code, reason)
+		_websocket = null
 		set_process(false)
 	
 func is_connected_to_server() -> bool:
@@ -50,4 +56,10 @@ func is_connected_to_server() -> bool:
 func send_string(string: String) -> void:
 	if !is_connected_to_server():
 		return
+	if string.length() > MAX_MESSAGE_SIZE:
+		var error_string: String = "메시지 크기가 최대 크기 {max}byte를 초과합니다: {current}".format({"max":MAX_MESSAGE_SIZE, "current": string.length()})
+		push_error(error_string)
+		_websocket.close(-1, error_string)
+		return
+	print(string.length())
 	_websocket.send_text(string)
