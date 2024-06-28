@@ -8,21 +8,25 @@ const INVALID_ROOM_ID: int = -1
 @onready var _room_name_node: Label = $RoomName
 @onready var _room_owner_node: Label = $RoomOwner
 
-var room_id: int = INVALID_ROOM_ID:
-	get:
-		return room_id
-	set(value):
-		room_id = value
-		
+func _ready():
+	_room_name_node.text = room_name
+	_room_owner_node.text = room_owner
+
+var room_id: int = INVALID_ROOM_ID
+
 var room_name: String:
 	get:
-		return _room_name_node.text
+		return room_name
 	set(value):
-		_room_name_node.text = value
-		
+		room_name = value
+		if _room_name_node != null:
+			_room_name_node.text = value
+
 var room_owner: String:
 	get:
-		return _room_owner_node.text
+		return room_owner
 	set(value):
-		_room_owner_node.text = value
+		room_owner = value
+		if _room_owner_node != null:
+			_room_owner_node.text = value
 

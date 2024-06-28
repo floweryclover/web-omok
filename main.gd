@@ -15,9 +15,11 @@ func _ready():
 	_network.websocket_message_send_requested.connect(_websocket_manager.send_string)
 	_disconnected_widget.reconnect_tried.connect(_connect_to_server)
 	
+	_lobby_widget.init()
 	_connect_to_server()
 	
 func _connect_to_server() -> bool:
+	_disconnected_widget.visible = false
 	return _websocket_manager.connect_to_server(websocket_server_url)
 	
 func _on_websocket_disconnected(code: int, reason: String) -> void:
@@ -28,3 +30,4 @@ func _on_websocket_disconnected(code: int, reason: String) -> void:
 func _on_websocket_connected():
 	_disconnected_widget.visible = false
 	_lobby_widget.visible = true
+	Network.request_all_room_datas()

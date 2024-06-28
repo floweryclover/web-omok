@@ -21,7 +21,7 @@ func connect_to_server(url: String) -> bool:
 			return false
 	else:
 		_websocket = WebSocketPeer.new()
-		
+	
 	var err: int = _websocket.connect_to_url(url)
 	if err != OK:
 		push_error(url + " 서버에 접속할 수 없습니다.")
@@ -38,6 +38,7 @@ func _process(_delta: float) -> void:
 	if state == WebSocketPeer.STATE_OPEN:
 		if _is_new_connection:
 			websocket_connected.emit()
+			_is_new_connection = false
 		while _websocket.get_available_packet_count():
 			var message: String = _websocket.get_packet().get_string_from_utf8()
 			if Network.handle_message(message) == false:
