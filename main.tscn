@@ -9,7 +9,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_fg36c")
-websocket_server_url = "wss://localhost:32770/ws/"
+websocket_server_url = "wss://localhost:32768/ws/"
 
 [node name="WebSocketManager" type="Node" parent="."]
 script = ExtResource("3_eddov")
