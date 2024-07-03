@@ -2,7 +2,7 @@ extends Control
 
 class_name RoomItem
 
-const INVALID_ROOM_ID: int = -1
+signal pressed
 
 @onready var _room_button_node: Button = $RoomButton
 @onready var _room_name_node: Label = $RoomName
@@ -11,8 +11,7 @@ const INVALID_ROOM_ID: int = -1
 func _ready():
 	_room_name_node.text = room_name
 	_room_owner_node.text = room_owner
-
-var room_id: int = INVALID_ROOM_ID
+	_room_button_node.pressed.connect(func(): pressed.emit())
 
 var room_name: String:
 	get:

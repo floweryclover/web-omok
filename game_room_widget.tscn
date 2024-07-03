@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c0e2iw8f6ewsl"]
+[gd_scene load_steps=2 format=3 uid="uid://c0e2iw8f6ewsl"]
+
+[ext_resource type="Script" path="res://game_room_widget.gd" id="1_pc42v"]
 
 [node name="GameRoomWidget" type="Control"]
 layout_mode = 3
@@ -7,37 +9,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pc42v")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="."]
+[node name="HeaderArea" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="RoomInfoArea" type="Control" parent="HFlowContainer"]
+[node name="ColorRect" type="ColorRect" parent="HeaderArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0, 1)
+
+[node name="BoardArea" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BoardArea"]
 layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="HFlowContainer/RoomInfoArea"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CheckerBoardArea" type="Control" parent="HFlowContainer"]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="HFlowContainer/CheckerBoardArea"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.294118, 0, 0, 1)

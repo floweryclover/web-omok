@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://i8nr4jqbcer8"]
+[gd_scene load_steps=8 format=3 uid="uid://i8nr4jqbcer8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_fg36c"]
 [ext_resource type="Script" path="res://web_socket_manager.gd" id="3_eddov"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://network.gd" id="4_o5wl0"]
 [ext_resource type="PackedScene" uid="uid://bw7cwkeiisx35" path="res://disconnected_widget.tscn" id="5_smldt"]
 [ext_resource type="PackedScene" uid="uid://bkx08aoo2bqqo" path="res://flash_message_widget.tscn" id="6_05g54"]
+[ext_resource type="PackedScene" uid="uid://c0e2iw8f6ewsl" path="res://game_room_widget.tscn" id="7_8csd0"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_fg36c")
@@ -24,3 +25,6 @@ visible = false
 visible = false
 
 [node name="FlashMessageWidget" parent="." instance=ExtResource("6_05g54")]
+
+[node name="GameRoomWidget" parent="." instance=ExtResource("7_8csd0")]
+visible = false
