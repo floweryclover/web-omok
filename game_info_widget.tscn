@@ -41,3 +41,18 @@ layout_mode = 2
 [node name="OpponentInfo" parent="PlayerInfoArea" instance=ExtResource("2_qrr1g")]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+
+[node name="GameStartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.5
+offset_top = -31.0
+offset_right = 38.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "게임 시작"

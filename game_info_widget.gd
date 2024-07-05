@@ -5,12 +5,14 @@ class_name GameInfoWidget
 @onready var my_info: PlayerInfoWidget = $PlayerInfoArea/MyInfo
 @onready var opponent_info: PlayerInfoWidget = $PlayerInfoArea/OpponentInfo
 @onready var room_name_label: Label = $RoomNameLabel
+@onready var game_start_button: Button = $GameStartButton
 
 func init():
 	Network.get_instance().room_info_updated.connect(update_game_info)
 	room_name_label.visible = false
 	my_info.visible = false
 	opponent_info.visible = false
+	game_start_button.visible = false
 	
 func update_game_info(room_name: String, my_nickname: String, my_color: int, opponent_nickname: String, opponent_color: int, is_owner: bool) -> void:
 	room_name_label.text = room_name
@@ -29,3 +31,4 @@ func update_game_info(room_name: String, my_nickname: String, my_color: int, opp
 	my_info.set_stone_color(my_color)
 	my_info.set_name(my_nickname)
 	my_info.visible = true
+	

@@ -9,7 +9,7 @@ class_name LobbyWidget
 func init() -> void:
 	Network.get_instance().room_item_received.connect(_on_room_item_received)
 	Network.get_instance().room_item_removed.connect(_on_room_item_removed)
-	
+	Network.get_instance().room_state_changed.connect(_on_room_state_changed)
 func clear_room_list() -> void:
 	_room_list.clear()
 
@@ -39,3 +39,6 @@ func _on_room_item_removed(room_id: int) -> void:
 func _on_room_item_pressed(room_id: int) -> void:
 	Network.request_join_game_room(room_id)
 	
+func _on_room_state_changed(room_id: int, room_state: int) -> void:
+	if room_state == 0: # inactve
+		_on_room_item_removed(room_id)

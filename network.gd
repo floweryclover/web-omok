@@ -9,6 +9,8 @@ signal room_item_removed(room_id: int)
 signal kicked_from_game_room
 signal entered_to_game_room
 signal room_info_updated(room_name: String, my_name: String, my_color: int, opponent_name: String, opponent_color: int, is_owner: bool)
+signal stone_placed(color: int, row: int, column: int)
+signal room_state_changed(room_id: int, room_state: int)
 
 static var _singleton: Network = null
 
@@ -38,6 +40,13 @@ static func request_join_game_room(room_id: int) -> void:
 static func request_leave_game_room() -> void:
 	var msg: Dictionary = {
 		"msg": "requestLeaveGameRoom" }
+	_send_json_string(msg)
+	
+static func place_stone(row: int, column: int) -> void:
+	var msg: Dictionary = {
+		"msg": "placeStone",
+		"row": row,
+		"column": column }
 	_send_json_string(msg)
 	
 static func _send_json_string(json_object: Dictionary) -> void:
@@ -85,18 +94,25 @@ static func handle_message(message: String) -> bool:
 		
 		if json_object['opponentName']:
 			opponent_name = json_object['opponentName']
-
-		var convert_color = func(color_number: int):
-			if color_number == 0:
-				return PlayerInfoWidget.COLOR_BLACK
-			elif color_number == 1:
-				return PlayerInfoWidget.COLOR_WHITE
-			else:
-				return PlayerInfoWidget.COLOR_HIDDEN
 		
-		_singleton.room_info_updated.emit(room_name, my_name, convert_color.call(my_color_number), opponent_name, convert_color.call(opponent_color_number), is_owner)
+		_singleton.room_info_updated.emit(room_name, my_name, convert_color(my_color_number), opponent_name, convert_color(opponent_color_number), is_owner)
+	elif msg == "placeStone":
+		var color: int = convert_color(json_object['color'])
+		var row: int = json_object['row']
+		var column: int = json_object['column']
+		_singleton.stone_placed.emit(color, row, column)
+	elif msg == "changeRoomState":
+		var room_id: int = json_object['roomId']
+		var room_state: int = json_object['roomState']
+		_singleton.room_state_changed.emit(room_id, room_state)
 	else:
 		push_error("처리되지 않은 메시지: " + msg)
-			
 	return true
 	
+static func convert_color(color_number: int) -> int:
+	if color_number == 0:
+		return PlayerInfoWidget.COLOR_BLACK
+	elif color_number == 1:
+		return PlayerInfoWidget.COLOR_WHITE
+	else:
+		return PlayerInfoWidget.COLOR_HIDDEN

@@ -5,6 +5,7 @@ class_name GameRoomWidget
 @onready var _header_area: Control = $HeaderArea
 @onready var _board_area: AspectRatioContainer = $BoardArea
 @onready var game_info_widget: GameInfoWidget = $HeaderArea/GameInfo
+@onready var omok_board: OmokBoard = $BoardArea/OmokBoard
 @export var header_minimum_size: int = 200
 
 func init() -> void:
@@ -16,6 +17,7 @@ func _ready():
 	
 func _on_screen_resized() -> void:
 	_update_layout()
+	omok_board.update_cells_size()
 
 func _update_layout() -> void:
 	var screen_size: Vector2i = get_tree().get_root().get_window().get_size()
