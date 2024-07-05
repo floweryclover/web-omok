@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0e2iw8f6ewsl"]
+[gd_scene load_steps=3 format=3 uid="uid://c0e2iw8f6ewsl"]
 
 [ext_resource type="Script" path="res://game_room_widget.gd" id="1_pc42v"]
+[ext_resource type="PackedScene" uid="uid://bkrye0qywbax7" path="res://game_info_widget.tscn" id="2_w8x77"]
 
 [node name="GameRoomWidget" type="Control"]
 layout_mode = 3
@@ -26,7 +27,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 0, 1)
+color = Color(0.103793, 0.335262, 0.371248, 1)
+
+[node name="GameInfo" parent="HeaderArea" instance=ExtResource("2_w8x77")]
+layout_mode = 1
 
 [node name="BoardArea" type="AspectRatioContainer" parent="."]
 layout_mode = 1
@@ -35,6 +39,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="BoardArea"]
-layout_mode = 2

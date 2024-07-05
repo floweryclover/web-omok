@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkrye0qywbax7"]
+
+[ext_resource type="Script" path="res://game_info_widget.gd" id="1_3ibv2"]
+[ext_resource type="PackedScene" uid="uid://b1h2r4taax8w0" path="res://player_info_widget.tscn" id="2_qrr1g"]
+
+[node name="GameInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ibv2")
+
+[node name="RoomNameLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "방이름"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerInfoArea" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="MyInfo" parent="PlayerInfoArea" instance=ExtResource("2_qrr1g")]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+
+[node name="OpponentInfo" parent="PlayerInfoArea" instance=ExtResource("2_qrr1g")]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2

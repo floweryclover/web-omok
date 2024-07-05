@@ -25,6 +25,7 @@ func _ready():
 	_disconnected_widget.reconnect_tried.connect(_connect_to_server)
 	
 	_lobby_widget.init()
+	_game_room_widget.init()
 	_connect_to_server()
 	
 func _connect_to_server() -> bool:

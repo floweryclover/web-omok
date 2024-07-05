@@ -4,7 +4,11 @@ class_name GameRoomWidget
 
 @onready var _header_area: Control = $HeaderArea
 @onready var _board_area: AspectRatioContainer = $BoardArea
+@onready var game_info_widget: GameInfoWidget = $HeaderArea/GameInfo
 @export var header_minimum_size: int = 200
+
+func init() -> void:
+	game_info_widget.init()
 
 func _ready():
 	_update_layout()

@@ -8,6 +8,7 @@ signal room_item_received(room_id: int, room_name: String, room_owner: String)
 signal room_item_removed(room_id: int)
 signal kicked_from_game_room
 signal entered_to_game_room
+signal room_info_updated(room_name: String, my_name: String, my_color: int, opponent_name: String, opponent_color: int, is_owner: bool)
 
 static var _singleton: Network = null
 
@@ -74,6 +75,26 @@ static func handle_message(message: String) -> bool:
 		_singleton.kicked_from_game_room.emit()
 	elif msg == "enterGameRoom":
 		_singleton.entered_to_game_room.emit()
+	elif msg == "updateGameRoomInfo":
+		var room_name: String = json_object['roomName']
+		var my_name: String = json_object['myName']
+		var my_color_number: int = json_object['myColor']
+		var opponent_name: String = ""
+		var opponent_color_number: int = json_object['opponentColor']
+		var is_owner: bool = json_object['isOwner']
+		
+		if json_object['opponentName']:
+			opponent_name = json_object['opponentName']
+
+		var convert_color = func(color_number: int):
+			if color_number == 0:
+				return PlayerInfoWidget.COLOR_BLACK
+			elif color_number == 1:
+				return PlayerInfoWidget.COLOR_WHITE
+			else:
+				return PlayerInfoWidget.COLOR_HIDDEN
+		
+		_singleton.room_info_updated.emit(room_name, my_name, convert_color.call(my_color_number), opponent_name, convert_color.call(opponent_color_number), is_owner)
 	else:
 		push_error("처리되지 않은 메시지: " + msg)
 			

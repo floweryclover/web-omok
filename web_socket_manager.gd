@@ -8,7 +8,7 @@ signal websocket_connected
 var _websocket: WebSocketPeer = null
 var _is_new_connection: bool = true
 
-const MAX_MESSAGE_SIZE: int = 256
+const MAX_MESSAGE_SIZE: int = 512
 
 func connect_to_server(url: String) -> bool:
 	if _websocket != null:
