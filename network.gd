@@ -58,6 +58,12 @@ static func start_game() -> void:
 		"msg": "startGame" }
 	_send_json_string(msg)
 	
+static func change_nickname(nickname: String) -> void:
+	var msg: Dictionary = {
+		"msg": "changeNickname",
+		"nickname": nickname }
+	_send_json_string(msg)
+
 static func _send_json_string(json_object: Dictionary) -> void:
 	var json_string: String = JSON.stringify(json_object)
 	_singleton.websocket_message_send_requested.emit(json_string)

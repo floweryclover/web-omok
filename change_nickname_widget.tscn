@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6nxdujn0d6q0"]
+
+[ext_resource type="Script" path="res://change_nickname_widget.gd" id="1_ir6p8"]
+
+[node name="ChangeNicknameWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ir6p8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.489622, 0.489622, 0.489622, 0.588235)
+
+[node name="NicknameEnterArea" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="NicknameEnterArea"]
+layout_mode = 2
+text = "닉네임
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="NicknameEnterArea"]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="ButtonArea" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ChangeButton" type="Button" parent="ButtonArea"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "변경"
+
+[node name="CancelButton" type="Button" parent="ButtonArea"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "취소"

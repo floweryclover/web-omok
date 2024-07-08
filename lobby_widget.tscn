@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt4lpqpfnyckd"]
+[gd_scene load_steps=5 format=3 uid="uid://bt4lpqpfnyckd"]
 
 [ext_resource type="Script" path="res://lobby_widget.gd" id="1_n7obw"]
 [ext_resource type="PackedScene" uid="uid://kgym03k8nyvd" path="res://create_room_widget.tscn" id="2_ach1x"]
 [ext_resource type="Script" path="res://room_list.gd" id="2_xxqvr"]
+[ext_resource type="PackedScene" uid="uid://b6nxdujn0d6q0" path="res://change_nickname_widget.tscn" id="4_qll3t"]
 
 [node name="LobbyWidget" type="Control"]
 layout_mode = 3
@@ -47,6 +48,20 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "방 만들기"
+
+[node name="ChangeNicknameButton" type="Button" parent="Header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
@@ -55,17 +70,7 @@ offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="Header/CreateRoomButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "방 만들기"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "닉네임 변경"
 
 [node name="RoomList" type="Control" parent="."]
 layout_mode = 1
@@ -99,5 +104,9 @@ grow_vertical = 2
 vertical = true
 
 [node name="CreateRoomWidget" parent="." instance=ExtResource("2_ach1x")]
+visible = false
+layout_mode = 1
+
+[node name="ChangeNicknameWidget" parent="." instance=ExtResource("4_qll3t")]
 visible = false
 layout_mode = 1
