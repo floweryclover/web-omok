@@ -6,7 +6,7 @@ class_name OmokBoard
 @onready var cell_container: GridContainer = $CellContainer
 var _cells: Array = []
 
-func _ready() -> void:
+func init() -> void:
 	for row in range(15):
 		_cells.append([])
 		for column in range(15):

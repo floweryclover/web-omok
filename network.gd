@@ -5,12 +5,16 @@ class_name Network
 signal websocket_message_send_requested(message: String)
 
 signal room_item_received(room_id: int, room_name: String, room_owner: String)
-signal room_item_removed(room_id: int)
 signal kicked_from_game_room
-signal entered_to_game_room
-signal room_info_updated(room_name: String, my_name: String, my_color: int, opponent_name: String, opponent_color: int, is_owner: bool)
+signal entered_to_game_room(room_id: int)
 signal stone_placed(color: int, row: int, column: int)
-signal room_state_changed(room_id: int, room_state: int)
+signal room_state_changed(room_id: int, room_state_number: int)
+signal ownership_updated(is_owner: bool)
+signal stone_color_updated(my_color: int)
+signal current_room_name_updated(room_name: String)
+signal my_name_updated(my_name: String)
+signal opponent_name_updated(opponent_name: String)
+signal game_message_received(message: String)
 
 static var _singleton: Network = null
 
@@ -49,6 +53,11 @@ static func place_stone(row: int, column: int) -> void:
 		"column": column }
 	_send_json_string(msg)
 	
+static func start_game() -> void:
+	var msg: Dictionary = {
+		"msg": "startGame" }
+	_send_json_string(msg)
+	
 static func _send_json_string(json_object: Dictionary) -> void:
 	var json_string: String = JSON.stringify(json_object)
 	_singleton.websocket_message_send_requested.emit(json_string)
@@ -77,42 +86,48 @@ static func handle_message(message: String) -> bool:
 		var room_name: String = json_object['roomName']
 		var room_owner: String = json_object['roomOwner']
 		_singleton.room_item_received.emit(room_id, room_name, room_owner)
-	elif msg == "removeRoomItem":
-		var room_id: int = json_object['roomId']
-		_singleton.room_item_removed.emit(room_id)
-	elif msg == "leaveGameRoom":
+	elif msg == "kickedFromGameRoom":
 		_singleton.kicked_from_game_room.emit()
 	elif msg == "enterGameRoom":
-		_singleton.entered_to_game_room.emit()
-	elif msg == "updateGameRoomInfo":
-		var room_name: String = json_object['roomName']
-		var my_name: String = json_object['myName']
-		var my_color_number: int = json_object['myColor']
-		var opponent_name: String = ""
-		var opponent_color_number: int = json_object['opponentColor']
-		var is_owner: bool = json_object['isOwner']
-		
-		if json_object['opponentName']:
-			opponent_name = json_object['opponentName']
-		
-		_singleton.room_info_updated.emit(room_name, my_name, convert_color(my_color_number), opponent_name, convert_color(opponent_color_number), is_owner)
+		var room_id: int = json_object['roomId']
+		_singleton.entered_to_game_room.emit(room_id)
 	elif msg == "placeStone":
-		var color: int = convert_color(json_object['color'])
+		var color: int = convert_color(json_object['stoneColorNumber'])
 		var row: int = json_object['row']
 		var column: int = json_object['column']
 		_singleton.stone_placed.emit(color, row, column)
-	elif msg == "changeRoomState":
+	elif msg == "updateRoomState":
 		var room_id: int = json_object['roomId']
-		var room_state: int = json_object['roomState']
-		_singleton.room_state_changed.emit(room_id, room_state)
+		var room_state_number: int = json_object['roomStateNumber']
+		_singleton.room_state_changed.emit(room_id, room_state_number)
+	elif msg == "updateOwnership":
+		var is_owner: bool = json_object['isOwner']
+		_singleton.ownership_updated.emit(is_owner)
+	elif msg == "updateStoneColor":
+		var my_color: int = convert_color(json_object['myColorNumber'])
+		_singleton.stone_color_updated.emit(my_color)
+	elif msg == "updateCurrentRoomName":
+		var room_name: String = json_object['roomName']
+		_singleton.current_room_name_updated.emit(room_name)
+	elif msg == "updateMyName":
+		var my_name: String = json_object['myName']
+		_singleton.my_name_updated.emit(my_name)
+	elif msg == "updateOpponentName":
+		var opponent_name: String = json_object['opponentName']
+		_singleton.opponent_name_updated.emit(opponent_name)
+	elif msg == "gameMessage":
+		var game_message: String = json_object['message']
+		_singleton.game_message_received.emit(game_message)
 	else:
 		push_error("처리되지 않은 메시지: " + msg)
 	return true
 	
 static func convert_color(color_number: int) -> int:
+	var return_value: int = 0
 	if color_number == 0:
-		return PlayerInfoWidget.COLOR_BLACK
+		return_value = PlayerInfoWidget.COLOR_BLACK
 	elif color_number == 1:
-		return PlayerInfoWidget.COLOR_WHITE
+		return_value =  PlayerInfoWidget.COLOR_WHITE
 	else:
-		return PlayerInfoWidget.COLOR_HIDDEN
+		return_value =  PlayerInfoWidget.COLOR_HIDDEN
+	return return_value

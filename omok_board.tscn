@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://omok_board.gd" id="1_ffb8n"]
 
 [node name="OmokBoard" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +22,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CellContainer" type="GridContainer" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

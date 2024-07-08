@@ -40,7 +40,7 @@ func _on_websocket_connected() -> void:
 	_switch_scene(SCENE_LOBBY)
 	Network.request_all_room_datas()
 
-func _on_game_room_entered() -> void:
+func _on_game_room_entered(room_id: int) -> void:
 	_switch_scene(SCENE_GAME_ROOM)	
 func _on_game_room_left() -> void:
 	_switch_scene(SCENE_LOBBY)

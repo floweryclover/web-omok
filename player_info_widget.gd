@@ -13,7 +13,7 @@ enum {
 }	
 
 func _ready():
-	stone_color.visible = false
+	stone_color.visible = true
 	nickname_label.visible = false
 	
 func set_stone_color(color: int) -> void:
